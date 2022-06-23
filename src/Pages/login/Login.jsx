@@ -7,8 +7,9 @@ import { LockOutlined } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import "./login.scss";
 
-export const LoginPage = ({ adminUser, studentUser, error }) => {
+export const LoginPage = ({ adminUser, studentUser, error, setError }) => {
   const [refs, setRefs] = useState({ pwd: "", username: "" });
   const [successAdmin, setSuccessAdmin] = useState(false);
   const [successStudent, setSuccessStudent] = useState(false);
@@ -19,6 +20,8 @@ export const LoginPage = ({ adminUser, studentUser, error }) => {
       values.pwd === adminUser[0].pwd
     ) {
       setSuccessAdmin(true);
+    } else {
+      setError("Giriş bilgileriniz yanlış");
     }
   };
 
@@ -29,6 +32,7 @@ export const LoginPage = ({ adminUser, studentUser, error }) => {
     ) {
       setSuccessStudent(true);
     }
+    setError("Giriş bilgileri yanlış");
   };
 
   const handleSubmit = async (e) => {
@@ -71,7 +75,8 @@ export const LoginPage = ({ adminUser, studentUser, error }) => {
             <Typography component="h1" variant="h5">
               Giriş Yap
             </Typography>
-            {/* Error */}
+            {/* Alttaki error fonksiyonu sorabilir bir yere not al silersin sonra eklersin sorarsa  */}
+            {/* {error !== "" ? <div className="error">{error}</div> : ""} */}
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
