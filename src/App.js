@@ -1,5 +1,5 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { Admin, Resource, defaultTheme } from "react-admin";
+import { Routes, Route } from "react-router-dom";
+import { Admin, Resource } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
 import {
   DersCreate,
@@ -15,34 +15,28 @@ import {
 import api from "./api/axios";
 import { LoginPage } from "./Pages/login/Login";
 import { useEffect, useState } from "react";
+import Student from "./Pages/Student/Student";
 
 const dataProvider = jsonServerProvider("http://localhost:3500");
-
-const theme = {
-  ...defaultTheme,
-  palette: {
-    mode: "dark",
-  },
-};
 
 const App = () => {
   const [adminUser, setAdminUser] = useState({ username: "", pwd: "" });
   const [studentUser, setStudentUser] = useState({ username: "", pwd: "" });
+  const [dersler, setDersler] = useState([]);
+  const [ogretmenler, setOgretmenler] = useState([]);
   const [error, setError] = useState("");
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const navigate = useNavigate();
-
-  if (!isLoggedIn) {
-    navigate("/login");
-  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const responseAdminUser = await api.get("/adminuser");
-        setAdminUser(responseAdminUser.data);
         const responseStudentUser = await api.get("/studentuser");
+        const responseDersler = await api.get("/dersler");
+        const responseOgretmenler = await api.get("/ogretmenler");
+        setAdminUser(responseAdminUser.data);
         setStudentUser(responseStudentUser.data);
+        setDersler(responseDersler.data);
+        setOgretmenler(responseOgretmenler.data);
       } catch (error) {
         if (error.response) {
           console.log(error.response.data);
@@ -64,7 +58,7 @@ const App = () => {
           <Route
             path="/*"
             element={
-              <Admin theme={theme} dataProvider={dataProvider}>
+              <Admin dataProvider={dataProvider}>
                 <Resource
                   name="ogrenciler"
                   list={OgrenciList}
@@ -87,19 +81,20 @@ const App = () => {
             }
           />
         </Route>
-        <Route>
-          <Route
-            path="/login"
-            element={
-              <LoginPage
-                studentUser={studentUser}
-                adminUser={adminUser}
-                error={error}
-                setLoggedIn={setLoggedIn}
-              />
-            }
-          />
-        </Route>
+        <Route
+          path="/login"
+          element={
+            <LoginPage
+              studentUser={studentUser}
+              adminUser={adminUser}
+              error={error}
+            />
+          }
+        />
+        <Route
+          path="/ogrenci"
+          element={<Student dersler={dersler} ogretmenler={ogretmenler} />}
+        />
       </Routes>
     </div>
   );

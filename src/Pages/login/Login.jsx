@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
-export const LoginPage = ({ adminUser, studentUser, error, setLoggedIn }) => {
+export const LoginPage = ({ adminUser, studentUser, error }) => {
   const [refs, setRefs] = useState({ pwd: "", username: "" });
   const [successAdmin, setSuccessAdmin] = useState(false);
   const [successStudent, setSuccessStudent] = useState(false);
