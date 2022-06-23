@@ -1,0 +1,9 @@
+export { default as DersCreate } from "./Lessons/dersCreate/dersCreate";
+export { default as DersEdit } from "./Lessons/dersEdit/DersEdit";
+export { default as DersList } from "./Lessons/dersList/DersList";
+export { default as OgrenciList } from "./Users/ogrenciList/OgrenciList";
+export { default as OgrenciEdit } from "./Users/ogrenciEdit/OgrenciEdit";
+export { default as OgrenciCreate } from "./Users/ogrenciCreate/OgrenciCreate";
+export { default as OgretmenCreate } from "./Teachers/ogretmenlerCreate/OgretmenlerCreate";
+export { default as OgretmenList } from "./Teachers/ogretmenlerList/OgretmenlerList";
+export { default as OgretmenEdit } from "./Teachers/ogretmenlerEdit/OgretmenlerEdit";

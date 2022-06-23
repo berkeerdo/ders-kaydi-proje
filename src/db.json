@@ -1,0 +1,29 @@
+{
+  "dersler": [
+    {
+      "name": "Web Programlama",
+      "teacher": "Cem Taskin",
+      "id": 1
+    }
+  ],
+  "adminuser": [
+    {
+      "username": "testAdmin",
+      "pwd": "123456"
+    }
+  ],
+  "studentuser": [
+    {
+      "username": "test",
+      "pwd": "12345"
+    }
+  ],
+  "ogrenciler": [
+    {
+      "name": "Mahmut",
+      "number": "123456",
+      "id": 1
+    }
+  ],
+  "ogretmenler": [{ "name": "test", "Vdersler": "", "id": "" }]
+}
